@@ -10,6 +10,7 @@ import "aliases/vpn"
 import "aliases/vault"
 import "aliases/ssh"
 import "aliases/vi"
+import "aliases/mount"
 import "aliases/essentials"
 
 # Setup environment variables
