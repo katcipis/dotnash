@@ -1,14 +1,10 @@
-fn vpn(subcommand) {
-        sudo systemctl $subcommand openvpn-client@client.service
+fn vpn() {
+	vpncfg <= format("%s/.vpn/client.cfg", $HOME)
+
+	# TODO: get password
+	twofactor <= 2fa client
+
+	sudo openvpn --config $vpncfg
 }
 
-fn vpnstart() {
-        vpn("start")
-}
-
-fn vpnstop() {
-        vpn("stop")
-}
-
-bindfn vpnstart vpnstart
-bindfn vpnstop vpnstop
+bindfn vpn vpn

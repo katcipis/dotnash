@@ -44,7 +44,16 @@ fn golab(project) {
         findproject(($lambda $pirates $platform))
 }
 
-fn gohub(project) {
+fn gohub(project...) {
+	if len($project) == "0" {
+		d <= format(
+			"%s/src/github.com",
+			$GOPATH,
+		)
+		changedir($d)
+		return
+	}
+
         neowaylabs <= github_path("NeowayLabs", $project)
         madlambda <= github_path("madlambda", $project)
         katcipis <= github_path("katcipis", $project)
