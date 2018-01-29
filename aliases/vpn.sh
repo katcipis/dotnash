@@ -1,9 +1,8 @@
 fn vpn() {
 	vpncfg <= format("%s/.vpn/client.cfg", $HOME)
-
-	# TODO: get password
+	echo $VPN
 	twofactor <= 2fa client
-
+	echo $twofactor
 	sudo openvpn --config $vpncfg
 }
 
