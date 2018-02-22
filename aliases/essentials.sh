@@ -1,14 +1,18 @@
-fn tox() {
-        xclip -selection clipboard
-}
-
-fn fromx() {
-        xclip -selection clipboard -o
-}
-
 fn archupdate() {
         sudo pacman -Sy archlinux-keyring
         sudo pacman -Syyu
+}
+
+fn aur(packagename) {
+	wd <= pwd
+	tmp <= mktemp -d
+	cd $tmp
+	giturl <= format("https://aur.archlinux.org/%s.git", $packagename)
+	git clone $giturl
+	cd $packagename
+	makepkg -sri
+	cd $wd
+	rm -rf $tmp
 }
 
 fn genpassword() {
@@ -50,8 +54,6 @@ fn playdir(dir) {
 	}
 }
 
-bindfn tox tox
-bindfn fromx fromx
 bindfn archupdate archupdate
 bindfn genpassword genpassword
 bindfn netstart netstart
@@ -60,3 +62,4 @@ bindfn netsniff netsniff
 bindfn io io
 bindfn play play
 bindfn playdir playdir
+bindfn aur aur
