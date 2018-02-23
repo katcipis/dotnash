@@ -1,64 +1,60 @@
-fn gitlab_neoway_path(group, project) {
-        return format(
-		"%s/src/gitlab.neoway.com.br/%s/%s",
-		$GOPATH,
-		$group,
-		$project,
-	)
+fn gitlab_neoway_path() {
+        return format("%s/src/gitlab.neoway.com.br", $GOPATH)
 }
 
-fn github_path(group, project) {
-        return format(
-		"%s/src/github.com/%s/%s",
-		$GOPATH,
-		$group,
-		$project,
-	)
+fn github_path() {
+        return format( "%s/src/github.com", $GOPATH)
 }
 
 fn changedir(dir) {
         _, status <= ls $dir >[2] /dev/null
         if $status == "0" {
-		cd $dir
-		refreshPrompt()
+                cd $dir
+                refreshPrompt()
         }
-	return $status
+        return $status
 }
 
 fn findproject(possibilities) {
-	for possibility in $possibilities {
-		status <= changedir($possibility)
-		if $status == "0" {
-			return
-		}
-	}
-	echo
-        echo "unable to find project: " + $project
+        for possibility in $possibilities {
+                status <= changedir($possibility)
+                if $status == "0" {
+                        return
+                }
+        }
+}
+
+fn goproject(root, project) {
+        groups <= ls $root
+        groups <= split($groups, "\n")
+
+        paths = ()
+
+        for group in $groups {
+            path <= format("%s/%s/%s", $root, $group, $project)
+            paths <= append($paths, $path)
+        }
+
+        findproject($paths)
 }
 
 fn golab(project) {
-        lambda <= gitlab_neoway_path("lambda", $project)
-        pirates <= gitlab_neoway_path("datapirates", $project)
-        platform <= gitlab_neoway_path("dataplatform", $project)
-
-        findproject(($lambda $pirates $platform))
+        gitlabroot <= gitlab_neoway_path()
+        goproject($gitlabroot, $project)
 }
 
 fn gohub(project...) {
-	if len($project) == "0" {
-		d <= format(
-			"%s/src/github.com",
-			$GOPATH,
-		)
-		changedir($d)
-		return
-	}
+        if len($project) == "0" {
+                d <= format(
+                        "%s/src/github.com",
+                        $GOPATH,
+                )
+                changedir($d)
+                return
+        }
 
-        neowaylabs <= github_path("NeowayLabs", $project)
-        madlambda <= github_path("madlambda", $project)
-        katcipis <= github_path("katcipis", $project)
-
-        findproject(($neowaylabs $madlambda $katcipis))
+        gitlabroot <= github_path()
+        goproject($gitlabroot, $project)
 }
 
 bindfn golab golab
