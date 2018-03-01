@@ -19,9 +19,11 @@ fn findproject(possibilities) {
         for possibility in $possibilities {
                 status <= changedir($possibility)
                 if $status == "0" {
-                        return
+                        return "0"
                 }
         }
+
+        return "1"
 }
 
 fn goproject(root, project) {
@@ -35,7 +37,10 @@ fn goproject(root, project) {
             paths <= append($paths, $path)
         }
 
-        findproject($paths)
+        status <= findproject($paths)
+        if $status != "0" {
+            print("unable to find project[%s]\n", $project)
+        }
 }
 
 fn golab(project) {
@@ -44,17 +49,12 @@ fn golab(project) {
 }
 
 fn gohub(project...) {
+        githubroot <= github_path()
         if len($project) == "0" {
-                d <= format(
-                        "%s/src/github.com",
-                        $GOPATH,
-                )
-                changedir($d)
+                changedir($githubroot)
                 return
         }
-
-        gitlabroot <= github_path()
-        goproject($gitlabroot, $project)
+        goproject($githubroot, $project)
 }
 
 bindfn golab golab
