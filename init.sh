@@ -19,8 +19,9 @@ setenv GOROOT     = $HOME + "/go"
 setenv NASHPATH   = $HOME + "/nash"
 setenv NASHROOT   = $HOME + "/nashroot"
 setenv PYTHONROOT = $HOME + "/.local/bin"
-setenv PATH       = $PATH + ":" + $GOPATH + "/bin:" + $GOROOT + "/bin:" + $PYTHONROOT
-setenv SHELL      = "/usr/bin/env nash"
+setenv PLAN9 = "/usr/local/plan9"
+setenv PATH <= format("%s:%s/bin:%s/bin:%s/bin", $PATH, $GOPATH, $GOROOT, $PLAN9)
+setenv SHELL = "/usr/bin/env nash"
 
 # only to apply current PROMPT using new cd alias
 refreshPrompt()
