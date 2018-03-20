@@ -17,7 +17,7 @@ fn changedir(dir) {
 
 fn findproject(possibilities) {
         for possibility in $possibilities {
-                status <= changedir($possibility)
+                var status <= changedir($possibility)
                 if $status == "0" {
                         return "0"
                 }
@@ -37,7 +37,7 @@ fn goproject(root, project) {
             paths <= append($paths, $path)
         }
 
-        status <= findproject($paths)
+        var status <= findproject($paths)
         if $status != "0" {
             print("unable to find project[%s]\n", $project)
         }
