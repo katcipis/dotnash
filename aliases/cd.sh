@@ -1,7 +1,6 @@
 # cd alias add the branch name to prompt
 # PROMPT is a special variable used by nash command line to
 # setup your prompt.
-setenv PROMPT = "λ> "
 
 fn getDir() {
         var currentdir <= pwd
@@ -10,7 +9,7 @@ fn getDir() {
 }
 
 fn nash_repl_after(arg1, arg2) {
-        refreshPrompt()
+        # refreshPrompt()
 }
 
 fn refreshPrompt() {
