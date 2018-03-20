@@ -20,5 +20,4 @@ setenv PLAN9 = "/usr/local/plan9"
 setenv PATH <= format("%s:%s/bin:%s/bin:%s/bin", $PATH, $GOPATH, $GOROOT, $PLAN9)
 setenv SHELL = "/usr/bin/env nash"
 
-# only to apply current PROMPT using new cd alias
-# refreshPrompt()
+refreshPrompt()
