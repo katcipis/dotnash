@@ -1,8 +1,5 @@
 #!/usr/bin/env nash
 
-import "nashcomplete/all"
-import "nashlib/all"
-
 import "aliases/cd"
 import "aliases/go"
 import "aliases/git"

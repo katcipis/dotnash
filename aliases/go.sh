@@ -7,7 +7,7 @@ fn github_path() {
 }
 
 fn changedir(dir) {
-        _, status <= ls $dir >[2] /dev/null
+        var _, status <= ls $dir >[2] /dev/null
         if $status == "0" {
                 cd $dir
                 refreshPrompt()
@@ -27,13 +27,13 @@ fn findproject(possibilities) {
 }
 
 fn goproject(root, project) {
-        groups <= ls $root
+        var groups <= ls $root
         groups <= split($groups, "\n")
 
-        paths = ()
+        var paths = ()
 
         for group in $groups {
-            path <= format("%s/%s/%s", $root, $group, $project)
+            var path <= format("%s/%s/%s", $root, $group, $project)
             paths <= append($paths, $path)
         }
 
@@ -44,12 +44,12 @@ fn goproject(root, project) {
 }
 
 fn golab(project) {
-        gitlabroot <= gitlab_neoway_path()
+        var gitlabroot <= gitlab_neoway_path()
         goproject($gitlabroot, $project)
 }
 
 fn gohub(project...) {
-        githubroot <= github_path()
+        var githubroot <= github_path()
         if len($project) == "0" {
                 changedir($githubroot)
                 return

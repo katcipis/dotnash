@@ -6,9 +6,8 @@ fn sshtunnel(
     user,
     keyfile
 ) {
-    portforward <= format("%s:%s:%s", $localport, $remotehost, $remoteport)
-    echo $portforward
-    authinfo <= format("%s@%s", $user, $bastionhost)
+    var portforward <= format("%s:%s:%s", $localport, $remotehost, $remoteport)
+    var authinfo <= format("%s@%s", $user, $bastionhost)
     ssh -v -nNTL $portforward $authinfo -i $keyfile
 }
 
@@ -18,8 +17,8 @@ fn nwytunnel(
     remoteport,
     bastionhost
 ) {
-    user = "tiago.katcipis"
-    keyfile <= format("%s/.ssh/platform-bastion-katcipis", $HOME)
+    var user = "tiago.katcipis"
+    var keyfile <= format("%s/.ssh/platform-bastion-katcipis", $HOME)
     sshtunnel($localport, $remotehost, $remoteport, $bastionhost, $user, $keyfile)
 }
 
