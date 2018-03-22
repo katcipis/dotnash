@@ -7,6 +7,7 @@ import "aliases/vpn"
 import "aliases/vault"
 import "aliases/ssh"
 import "aliases/vi"
+import "aliases/plan9"
 import "aliases/mount"
 import "aliases/essentials"
 
