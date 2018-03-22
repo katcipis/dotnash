@@ -1,19 +1,19 @@
 fn gcheck(args...) {
 
 	fn removeorigin(b) {
-		parsed <= split($b, "/")
+		var parsed <= split($b, "/")
 		return $parsed[1]
 	}
 
         if len($args) == "0" {
-                branch <= git branch -r | sed "s/^[* \\t]*//g" | fzf --header "Select the branch: " | xargs echo -n
+                var branch <= git branch -r | sed "s/^[* \\t]*//g" | fzf --header "Select the branch: " | xargs echo -n
                 branch <= removeorigin($branch)
                 git checkout $branch
 		refreshPrompt()
                 return
-        } 
+        }
 
-	branch = $args[0]
+	var branch = $args[0]
 	branchs <= git branch | sed "s/^[* \\t]*//g"
 
 	for b in $branchs {

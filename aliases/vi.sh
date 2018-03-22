@@ -1,7 +1,7 @@
 import globerize
 
 fn vi(args...) {
-    expandedargs <= globerize($args...)
+    var expandedargs <= globerize($args...)
     nvim $expandedargs
 }
 

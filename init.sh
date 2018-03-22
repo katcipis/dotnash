@@ -1,8 +1,5 @@
 #!/usr/bin/env nash
 
-import "nashcomplete/all"
-import "nashlib/all"
-
 import "aliases/cd"
 import "aliases/go"
 import "aliases/git"
@@ -10,6 +7,7 @@ import "aliases/vpn"
 import "aliases/vault"
 import "aliases/ssh"
 import "aliases/vi"
+import "aliases/plan9"
 import "aliases/mount"
 import "aliases/essentials"
 
@@ -23,5 +21,4 @@ setenv PLAN9 = "/usr/local/plan9"
 setenv PATH <= format("%s:%s/bin:%s/bin:%s/bin", $PATH, $GOPATH, $GOROOT, $PLAN9)
 setenv SHELL = "/usr/bin/env nash"
 
-# only to apply current PROMPT using new cd alias
 refreshPrompt()
