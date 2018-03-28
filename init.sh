@@ -32,15 +32,19 @@ fn plan9start() {
     }
 
     fn initsources() {
-        9fs sources
+        var _, status <= 9fs sources
+        print("sources init status[%s]\n", $status)
     }
 
     fn initplumb() {
-        plumber
+        var _, status <= plumber
+        print("plumber init status[%s]\n", $status)
     }
 
     startifnot("sources", $initsources)
     startifnot("plumb", $initplumb)
 }
 
+echo "starting plan9 port stuff"
 plan9start()
+echo "done"
