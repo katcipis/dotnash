@@ -22,29 +22,3 @@ setenv PATH <= format("%s:%s/bin:%s/bin:%s/bin", $PATH, $GOPATH, $GOROOT, $PLAN9
 setenv SHELL = "/usr/bin/env nash"
 
 refreshPrompt()
-
-fn plan9start() {
-    fn startifnot(name, initfn) {
-	var _, status <= 9p ls $name >[2] /dev/null
-	if $status != "0" {
-	    $initfn()
-	}
-    }
-
-    fn initsources() {
-        var _, status <= 9fs sources
-        print("sources init status[%s]\n", $status)
-    }
-
-    fn initplumb() {
-        var _, status <= plumber
-        print("plumber init status[%s]\n", $status)
-    }
-
-    startifnot("sources", $initsources)
-    startifnot("plumb", $initplumb)
-}
-
-echo "starting plan9 port stuff"
-plan9start()
-echo "done"
