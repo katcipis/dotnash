@@ -43,8 +43,12 @@ fn goproject(root, project) {
         }
 }
 
-fn golab(project) {
+fn golab(project...) {
         var gitlabroot <= gitlab_neoway_path()
+        if len($project) == "0" {
+            changedir($gitlabroot)
+            return
+        }
         goproject($gitlabroot, $project)
 }
 
