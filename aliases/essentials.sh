@@ -1,3 +1,5 @@
+import io
+
 fn archupdate() {
         sudo pacman -Sy archlinux-keyring
         sudo pacman -Syyu
@@ -45,6 +47,27 @@ fn playdir(dir) {
 	}
 }
 
+fn sub() {
+	subliminal download --language eng .
+	
+	echo "removing .eng from subtitles filenames to match videos"
+	var files <= ls | grep "en.srt"
+	files <= split($files, "\n")
+	
+	for f in $files {
+		var newfilename <= echo $f | sed "s/.en//g"
+		var out, status <= ls $newfilename >[2] /dev/null
+		
+		if $status != "0" {
+			io_println("moving [%s] to [%s]", $f, $newfilename)
+			mv $f $newfilename
+		} else {
+			io_println("ignoring file[%s] that already exists", $newfilename)
+		}
+		
+	}
+}
+
 bindfn archupdate archupdate
 bindfn genpassword genpassword
 bindfn netstart netstart
@@ -52,3 +75,4 @@ bindfn io io
 bindfn play play
 bindfn playdir playdir
 bindfn aur aur
+bindfn sub sub
