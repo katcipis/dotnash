@@ -22,5 +22,6 @@ setenv PLAN9 = "/usr/local/plan9"
 setenv ACMETOOLS = $PLAN9+"/acme/edit"
 setenv PATH <= format("%s:%s/bin:%s/bin:%s/bin", $PATH, $GOPATH, $GOROOT, $PLAN9)
 setenv SHELL = "/usr/bin/env nash"
+setenv BROWSER = "google-chrome-stable"
 
 refreshPrompt()
