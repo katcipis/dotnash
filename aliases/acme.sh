@@ -1,5 +1,15 @@
 fn ac() {
-	var cfgfmt = "%s\n/mnt/font/Go Mono/13a/font\n/lib/font/bit/lucm/unicode.9.font\n  0.0000000  12.6760563  42.2253521  72.0281690\nw Newcol Kill Putall Dump Exit \nc          0 New Cut Paste Snarf Sort Zerox Delcol \nc          1 New Cut Paste Snarf Sort Zerox Delcol \nc          2 New Cut Paste Snarf Sort Zerox Delcol \nc          3 New Cut Paste Snarf Sort Zerox Delcol \nf          0           1           0           0   2.0019066 \n          1          55          56           1           0 %s/ Del Snarf Get | Look"
+	var cfgfmt = "%s
+/mnt/font/Go Mono/13a/font
+/lib/font/bit/lucm/unicode.9.font
+  0.0000000  28.1126761  55.6338028  83.9436620
+w Newcol Kill Putall Dump Exit 
+c          0 New Cut Paste Snarf Sort Zerox Delcol 
+c          1 New Cut Paste Snarf Sort Zerox Delcol 
+c          2 New Cut Paste Snarf Sort Zerox Delcol 
+c          3 New Cut Paste Snarf Sort Zerox Delcol 
+f          3           2           0           0   2.0019066 
+          2          51          56           1           0 %s/ Del Snarf Get | Look"
 
 	var wd <= pwd
 	var cfg <= format($cfgfmt, $wd, $wd)
