@@ -68,6 +68,11 @@ fn sub() {
 	}
 }
 
+fn history() {
+	cat $NASHPATH + "/history"
+}
+
+bindfn history history
 bindfn archupdate archupdate
 bindfn genpassword genpassword
 bindfn netstart netstart
