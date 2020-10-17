@@ -2,7 +2,7 @@ import globerize
 
 fn vi(args...) {
     var expandedargs <= globerize($args...)
-    nvim $expandedargs
+    vim $expandedargs
 }
 
 # bindfn not working with vargs yet
