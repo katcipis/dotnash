@@ -4,8 +4,8 @@ install: clean
 	mkdir $(NASHLIBS)
 	cp -r init.sh $(NASHPATH)
 	cp -r aliases $(NASHPATH)
-	git clone https://github.com/NeowayLabs/nashcomplete.git $(NASHLIBS)/nashcomplete
-	git clone https://github.com/NeowayLabs/nashlib.git $(NASHLIBS)/nashlib
+	git clone https://github.com/madlambda/nashcomplete.git $(NASHLIBS)/nashcomplete
+	git clone https://github.com/madlambda/nashlib.git $(NASHLIBS)/nashlib
 
 clean:
 	rm -rf $(NASHPATH)/init.sh
