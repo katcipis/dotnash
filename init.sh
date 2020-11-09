@@ -1,6 +1,5 @@
 #!/usr/bin/env nash
 
-import nashcomplete/all
 import "aliases/cd"
 import "aliases/git"
 import "aliases/vault"
@@ -8,6 +7,8 @@ import "aliases/vi"
 import "aliases/acme"
 import "aliases/voip"
 import "aliases/essentials"
+
+import "nashcomplete/all"
 
 # Setup environment variables
 setenv NASHPATH = $HOME+"/nash"
