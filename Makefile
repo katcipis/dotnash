@@ -1,11 +1,15 @@
 NASHLIBS=$(NASHPATH)/lib
 
-install: clean
+all: deps install
+
+deps:
 	mkdir $(NASHLIBS)
-	cp -r init.sh $(NASHPATH)
-	cp -r aliases $(NASHPATH)
 	git clone https://github.com/madlambda/nashcomplete.git $(NASHLIBS)/nashcomplete
 	git clone https://github.com/madlambda/nashlib.git $(NASHLIBS)/nashlib
+
+install:
+	cp -r init.sh $(NASHPATH)
+	cp -r aliases $(NASHPATH)
 
 clean:
 	rm -rf $(NASHPATH)/init.sh
